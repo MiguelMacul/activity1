@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout android:id="@id/drawer" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/barra_principal_menu" />
-    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/vista_fragmentos" />
+<androidx.drawerlayout.widget.DrawerLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/drawer">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/barra_superior" />
+    <include
+        layout="@layout/contenedor_fragmentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navegationView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:menu="@menu/menu"
+        app:headerLayout="@layout/header_menu_lateral"
+       android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        />
 </androidx.drawerlayout.widget.DrawerLayout>

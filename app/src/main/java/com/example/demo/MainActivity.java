@@ -6,13 +6,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity{
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
@@ -22,13 +26,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "onCreate", 1).show();
+        Toast.makeText(this, "onCreate", 3).show();
         super.onCreate(savedInstanceState);
-        setContentView((int) R.layout.activity_main);
-        Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar);
-        this.toolbar = toolbar2;
-        setSupportActionBar(toolbar2);
-        this.drawerLayout = (DrawerLayout) findViewById(C0080R.C0083id.drawer);
+        setContentView(R.layout.activity_main);
+         toolbar = (Toolbar)findViewById(R.id.toolbar);
+        this.setSupportActionBar(toolbar);
+        this.drawerLayout =findViewById(C0080R.C0083id.drawer);
         NavigationView navigationView2 = (NavigationView) findViewById(C0080R.C0083id.navegationview);
         this.navigationView = navigationView2;
         navigationView2.setNavigationItemSelectedListener(this);
