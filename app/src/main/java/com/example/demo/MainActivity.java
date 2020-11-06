@@ -1,6 +1,5 @@
 package com.example.demo;
-package com.example.myapplication;
-
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.demo.Fragmentos.mainFrames;
 import com.example.demo.Fragmentos.personasFrames;
 import com.example.demo.Fragmentos.preferencia;
@@ -24,7 +21,6 @@ import com.example.demo.Fragmentos.restaOperacion;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
-
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -32,13 +28,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     FragmentTransaction fragmentTransaction;
     NavigationView navigationView;
     Toolbar toolbar;
-
     /* access modifiers changed from: protected */
+
+    @SuppressLint("WrongConstant")
     public void onCreate(Bundle savedInstanceState) {
         Toast.makeText(this, "onCreate", 1).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.drawerLayout =findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navegationView);
@@ -93,46 +90,43 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         }
         return false;
     }
-
-    public void almacenarPreferenciasHeader(String Texto) {
-        if (!getPreferences(0).getBoolean("presetHeader", false)) {
-            SharedPreferences.Editor editar = getSharedPreferences("presetHeader", 0).edit();
-            editar.putString("Titular", Texto);
-            editar.commit();
-        }
-    }
-
     /* access modifiers changed from: protected */
+    @SuppressLint("WrongConstant")
     public void onResume() {
         super.onResume();
         Toast.makeText(this, "onResumen", 1).show();
     }
 
     /* access modifiers changed from: protected */
+    @SuppressLint("WrongConstant")
     public void onPause() {
         super.onPause();
         Toast.makeText(this, "onPause", 1).show();
     }
 
     /* access modifiers changed from: protected */
+    @SuppressLint("WrongConstant")
     public void onDestroy() {
         super.onDestroy();
         Toast.makeText(this, "onDestroy", 1).show();
     }
 
     /* access modifiers changed from: protected */
+    @SuppressLint("WrongConstant")
     public void onStop() {
         super.onStop();
         Toast.makeText(this, "onStop", 1).show();
     }
 
     /* access modifiers changed from: protected */
+    @SuppressLint("WrongConstant")
     public void onRestart() {
         super.onRestart();
         Toast.makeText(this, "onRestart", 1).show();
     }
 
     /* access modifiers changed from: protected */
+    @SuppressLint("WrongConstant")
     public void onStart() {
         super.onStart();
         Toast.makeText(this, "onStart", 1).show();

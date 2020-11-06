@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
-import com.example.myapplication.C0080R;
 import java.io.PrintStream;
 
 public class personasFrames extends Fragment implements View.OnClickListener {
@@ -20,7 +18,7 @@ public class personasFrames extends Fragment implements View.OnClickListener {
         this.var = (EditText) view.findViewById(C0080R.C0083id.editTextTextPersonName3);
         this.var2 = (EditText) view.findViewById(C0080R.C0083id.Snumero1);
         this.var3 = (EditText) view.findViewById(C0080R.C0083id.Snumero2);
-        ((Button) view.findViewById(C0080R.C0083id.sumaBotton)).setOnClickListener(this);
+        view.findViewById(C0080R.C0083id.sumaBotton)).setOnClickListener(this);
         return view;
     }
 
