@@ -19,7 +19,6 @@ import com.example.demo.Fragmentos.preferencia;
 import com.example.demo.Fragmentos.recyclerxD;
 import com.example.demo.Fragmentos.restaOperacion;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         this.drawerLayout =findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navegationView);
         navigationView.setNavigationItemSelectedListener(this);
-        TextView campoText = (TextView) this.navigationView.getHeaderView(0).findViewById(R.id.title_head);
+        TextView campoText = this.navigationView.getHeaderView(0).findViewById(R.id.title_head);
         SharedPreferences pre = getSharedPreferences("presetHeader", 0);
         campoText.setText(pre.getString("Titular", "No existe aun xD"));
         campoText.setBackgroundColor(Color.parseColor(pre.getString("Color", "#FF8747")));
@@ -48,11 +47,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         this.drawerLayout.addDrawerListener(this.actionBarDrawerToggle);
         this.actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         this.actionBarDrawerToggle.syncState();
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        this.fragmentManager = supportFragmentManager;
-        FragmentTransaction beginTransaction = supportFragmentManager.beginTransaction();
-        this.fragmentTransaction = beginTransaction;
-        beginTransaction.add(R.id.contenedor,  new mainFrames());
+
+        fragmentManager= getSupportFragmentManager();
+        this.fragmentTransaction= fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.contenedor,  new mainFrames());
         this.fragmentTransaction.commit();
     }
 
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             this.fragmentTransaction.replace(R.id.contenedor, new recyclerxD());
             this.fragmentTransaction.commit();
         }
-        if (item.getItemId() != R.id.Preferencias) {
+        if (item.getItemId() == R.id.Preferencias) {
             this.fragmentManager= getSupportFragmentManager();
             this.fragmentTransaction  = fragmentManager.beginTransaction();
             this.fragmentTransaction.replace(R.id.contenedor, new preferencia());

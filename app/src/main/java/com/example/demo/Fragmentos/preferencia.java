@@ -21,33 +21,33 @@ public class preferencia extends Fragment implements View.OnClickListener {
     protected TextView campo1;
     public void inicializar() {
         this.actividad = getActivity();
-        this.campo2=null;
-        this.campo1=null;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.preferencias_fragmentos, container, false);
         inicializar();
-        campo2 = (TextView) view.findViewById(R.id.TextoPreferencias);
         campo1 = (TextView) view.findViewById(R.id.colorPreferencias);
-        this.hola = (TextView) this.actividad.findViewById(R.id.title_head);
-        SharedPreferences sharedPreferences = this.actividad.getSharedPreferences("presetHeader", 0);
-        this.preferencias = sharedPreferences;
-        campo2.setText(sharedPreferences.getString("Titular", "No existe aun xD"));
-        view.findViewById(R.id.botonResta).setOnClickListener(this);
+        campo2 = (TextView) view.findViewById(R.id.TextoPreferencias);
+        this.hola = this.actividad.findViewById(R.id.title_head);
+        this.preferencias  = this.actividad.getSharedPreferences("presetHeader", 0);
+        campo2.setText(this.preferencias .getString("Titular", "No existe aun xD"));
+        view.findViewById(R.id.ActualizarPrefencias).setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.ActualizarPrefencias) {
+
             SharedPreferences.Editor editar = preferencia.this.preferencias.edit();
             String var = !(campo1.getText().toString().equals(""))? campo1.getText().toString() : "#FF8747";
             editar.putString("Titular", campo2.getText().toString());
             editar.putString("Color", var);
             editar.commit();
-            preferencia.this.hola.setText(preferencia.this.preferencias.getString("Titular", "No hay nada"));
-            preferencia.this.hola.setBackgroundColor(Color.parseColor(preferencia.this.preferencias.getString("Color", "#FF8747")));
+            System.out.println(this.hola.getText());
+            System.out.println(this.preferencias.getString("Titular", "No hay nada"));
+            this.hola.setText(this.preferencias.getString("Titular", "No hay nada"));
+            this.hola.setBackgroundColor(Color.parseColor(this.preferencias.getString("Color", "#FF8747")));
         }
 
     }
