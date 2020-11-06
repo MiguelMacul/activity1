@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.demo.R;
 
-import java.io.PrintStream;
-
 public class personasFrames extends Fragment implements View.OnClickListener {
     /* access modifiers changed from: private */
     public EditText var;
@@ -22,18 +20,19 @@ public class personasFrames extends Fragment implements View.OnClickListener {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.resta_fragmentos, container, false);
-        Button boton = view.findViewById(R.id.botonResta);
-        this.var = (EditText) view.findViewById(R.id.Text1_resta);
-        this.var2 = (EditText) view.findViewById(R.id.Text2_resta);
-        this.var3 = (EditText) view.findViewById(R.id.Text3_resta);
-        view.findViewById(R.id.botonResta).setOnClickListener(this);
+        Button boton = view.findViewById(R.id.botonSuma);
+        this.var = (EditText) view.findViewById(R.id.Text1_Suma);
+        this.var2 = (EditText) view.findViewById(R.id.Text2_Suma);
+        this.var3 = (EditText) view.findViewById(R.id.Text3_Suma);
+        view.findViewById(R.id.botonSuma).setOnClickListener(this);
 
         return view;
     }
     public void onClick(View view) {
-        if (view.getId() == R.id.botonResta) {
-            int numero1 = Integer.parseInt(var.getText().toString());
-            var.setText(numero1 - Integer.parseInt(var2.getText().toString() ));
+        if (view.getId() == R.id.botonSuma) {
+            int numero1 = Integer.parseInt(""+var.getText());
+            int numero2 = Integer.parseInt(""+var2.getText());
+            var3.setText(""+(numero1 + numero2));
         }
     }
 }
