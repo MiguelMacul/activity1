@@ -1,22 +1,31 @@
 package com.example.demo;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+package com.example.myapplication;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.demo.Fragmentos.mainFrames;
+import com.example.demo.Fragmentos.personasFrames;
+import com.example.demo.Fragmentos.preferencia;
+import com.example.demo.Fragmentos.recyclerxD;
+import com.example.demo.Fragmentos.restaOperacion;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
@@ -26,75 +35,62 @@ public class MainActivity extends AppCompatActivity{
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "onCreate", 3).show();
+        Toast.makeText(this, "onCreate", 1).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         toolbar = (Toolbar)findViewById(R.id.toolbar);
-        this.setSupportActionBar(toolbar);
-        this.drawerLayout =findViewById(C0080R.C0083id.drawer);
-        NavigationView navigationView2 = (NavigationView) findViewById(C0080R.C0083id.navegationview);
-        this.navigationView = navigationView2;
-        navigationView2.setNavigationItemSelectedListener(this);
-        TextView asds = (TextView) this.navigationView.getHeaderView(0).findViewById(C0080R.C0083id.cabeza);
+         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        this.drawerLayout =findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.navegationView);
+        navigationView.setNavigationItemSelectedListener(this);
+        TextView campoText = (TextView) this.navigationView.getHeaderView(0).findViewById(R.id.title_head);
         SharedPreferences pre = getSharedPreferences("presetHeader", 0);
-        asds.setText(pre.getString("Titular", "No existe aun xD"));
-        asds.setBackgroundColor(Color.parseColor(pre.getString("Color", "#FF8747")));
-        ActionBarDrawerToggle actionBarDrawerToggle2 = new ActionBarDrawerToggle(this, this.drawerLayout, this.toolbar, C0080R.string.open, C0080R.string.close);
-        this.actionBarDrawerToggle = actionBarDrawerToggle2;
-        this.drawerLayout.addDrawerListener(actionBarDrawerToggle2);
+        campoText.setText(pre.getString("Titular", "No existe aun xD"));
+        campoText.setBackgroundColor(Color.parseColor(pre.getString("Color", "#FF8747")));
+        this.actionBarDrawerToggle  = new ActionBarDrawerToggle(this, this.drawerLayout, this.toolbar, R.string.open,R.string.close);
+        this.drawerLayout.addDrawerListener(this.actionBarDrawerToggle);
         this.actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         this.actionBarDrawerToggle.syncState();
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         this.fragmentManager = supportFragmentManager;
         FragmentTransaction beginTransaction = supportFragmentManager.beginTransaction();
         this.fragmentTransaction = beginTransaction;
-        beginTransaction.add((int) C0080R.C0083id.contenedor, (Fragment) new mainFrames());
+        beginTransaction.add(R.id.contenedor,  new mainFrames());
         this.fragmentTransaction.commit();
     }
 
     public boolean onNavigationItemSelected(MenuItem item) {
         this.drawerLayout.closeDrawer((int) GravityCompat.START);
-        if (item.getItemId() == C0080R.C0083id.home) {
-            FragmentManager supportFragmentManager = getSupportFragmentManager();
-            this.fragmentManager = supportFragmentManager;
-            FragmentTransaction beginTransaction = supportFragmentManager.beginTransaction();
-            this.fragmentTransaction = beginTransaction;
-            beginTransaction.replace(C0080R.C0083id.contenedor, new mainFrames());
+        if (item.getItemId() ==R.id.home) {
+            this.fragmentManager= getSupportFragmentManager();
+            this.fragmentTransaction  = fragmentManager.beginTransaction();
+            this.fragmentTransaction.replace(R.id.contenedor, new mainFrames());
             this.fragmentTransaction.commit();
         }
-        if (item.getItemId() == C0080R.C0083id.Suma) {
-            FragmentManager supportFragmentManager2 = getSupportFragmentManager();
-            this.fragmentManager = supportFragmentManager2;
-            FragmentTransaction beginTransaction2 = supportFragmentManager2.beginTransaction();
-            this.fragmentTransaction = beginTransaction2;
-            beginTransaction2.replace(C0080R.C0083id.contenedor, new personasFrames());
+        if (item.getItemId() ==R.id.Suma) {
+            this.fragmentManager= getSupportFragmentManager();
+            this.fragmentTransaction  = fragmentManager.beginTransaction();
+            this.fragmentTransaction.replace(R.id.contenedor, new personasFrames());
             this.fragmentTransaction.commit();
         }
-        if (item.getItemId() == C0080R.C0083id.Resta) {
-            FragmentManager supportFragmentManager3 = getSupportFragmentManager();
-            this.fragmentManager = supportFragmentManager3;
-            FragmentTransaction beginTransaction3 = supportFragmentManager3.beginTransaction();
-            this.fragmentTransaction = beginTransaction3;
-            beginTransaction3.replace(C0080R.C0083id.contenedor, new restaOperacion());
+        if (item.getItemId() ==R.id.Resta) {
+            this.fragmentManager= getSupportFragmentManager();
+            this.fragmentTransaction  = fragmentManager.beginTransaction();
+            this.fragmentTransaction.replace(R.id.contenedor, new restaOperacion());
             this.fragmentTransaction.commit();
         }
-        if (item.getItemId() == C0080R.C0083id.Informe) {
-            FragmentManager supportFragmentManager4 = getSupportFragmentManager();
-            this.fragmentManager = supportFragmentManager4;
-            FragmentTransaction beginTransaction4 = supportFragmentManager4.beginTransaction();
-            this.fragmentTransaction = beginTransaction4;
-            beginTransaction4.replace(C0080R.C0083id.contenedor, new recyclerxD());
+        if (item.getItemId() == R.id.Datos) {
+            this.fragmentManager= getSupportFragmentManager();
+            this.fragmentTransaction  = fragmentManager.beginTransaction();
+            this.fragmentTransaction.replace(R.id.contenedor, new recyclerxD());
             this.fragmentTransaction.commit();
         }
-        if (item.getItemId() != C0080R.C0083id.Preferencia) {
-            return false;
+        if (item.getItemId() != R.id.Preferencias) {
+            this.fragmentManager= getSupportFragmentManager();
+            this.fragmentTransaction  = fragmentManager.beginTransaction();
+            this.fragmentTransaction.replace(R.id.contenedor, new preferencia());
+            this.fragmentTransaction.commit();
         }
-        FragmentManager supportFragmentManager5 = getSupportFragmentManager();
-        this.fragmentManager = supportFragmentManager5;
-        FragmentTransaction beginTransaction5 = supportFragmentManager5.beginTransaction();
-        this.fragmentTransaction = beginTransaction5;
-        beginTransaction5.replace(C0080R.C0083id.contenedor, new preferencia());
-        this.fragmentTransaction.commit();
         return false;
     }
 
